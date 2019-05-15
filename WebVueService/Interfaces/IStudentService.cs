@@ -11,6 +11,8 @@ namespace WebVueService.Interfaces
 
         bool Delete(int id);
 
-        IEnumerable<Student> GetAll(Student model);
+        IEnumerable<Student> GetAll();
+
+        Student Get(int id);
     }
 }

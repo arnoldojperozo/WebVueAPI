@@ -5,8 +5,8 @@ using WebVueService.Interfaces;
 
 namespace WebVueAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/{controller}")]
     public class StudentsController : ControllerBase
     {
         private readonly IStudentService _service;
@@ -18,34 +18,34 @@ namespace WebVueAPI.Controllers
 
         // GET api/values
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             return Ok(_service.GetAll());
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            return Ok(_service.Get(id));
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Student model)
         {
+            return Ok(_service.Add(model));
+        }
+        
+        [HttpPut]
+        public IActionResult Put([FromBody] Student model)
+        {
+            return Ok(_service.Add(model));
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            return Ok(_service.Delete(id));
         }
+        
     }
 }

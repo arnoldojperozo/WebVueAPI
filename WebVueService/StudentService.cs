@@ -64,8 +64,9 @@ namespace WebVueService
             return true;
         }
 
-        public IEnumerable<Student> GetAll(Student model)
+        public IEnumerable<Student> GetAll()
         {
+            
             var result = new List<Student>();
 
             try
@@ -75,6 +76,22 @@ namespace WebVueService
             catch (System.Exception)
             {
 
+            }
+
+            return result;
+        }
+
+        public Student Get(int id)
+        {
+            var result = new Student();
+
+            try
+            {
+                result = _context.Students.SingleOrDefault(x => x.StudentId == id);
+            }
+            catch
+            {
+                
             }
 
             return result;
