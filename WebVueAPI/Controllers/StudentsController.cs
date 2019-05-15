@@ -1,20 +1,26 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using WebVueModel;
+using WebVueService.Interfaces;
 
 namespace WebVueAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class StudentsController : ControllerBase
     {
+        private readonly IStudentService _service;
+
+        public StudentsController(IStudentService service)
+        {
+            _service = service;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_service.GetAll());
         }
 
         // GET api/values/5

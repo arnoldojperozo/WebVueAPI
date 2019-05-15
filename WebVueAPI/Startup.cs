@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebVueDAL;
+using WebVueService;
+using WebVueService.Interfaces;
 
 namespace WebVueAPI
 {
@@ -22,8 +24,9 @@ namespace WebVueAPI
         {
             var connection = Configuration.GetConnectionString("ConnDev");
             services.AddDbContext<StudentDbContext>(options => options.UseSqlServer(connection));
+            services.AddTransient<IStudentService, StudentService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

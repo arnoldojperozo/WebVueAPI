@@ -17,5 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebVueDAL\WebVueDAL.csproj" />
+    <ProjectReference Include="..\WebVueService\WebVueService.csproj" />
   </ItemGroup>
 </Project>
