@@ -26,6 +26,15 @@ namespace WebVueAPI
             services.AddDbContext<StudentDbContext>(options => options.UseSqlServer(connection));
             services.AddTransient<IStudentService, StudentService>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin", builder =>
+                    builder.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin()
+                    );
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -40,6 +49,8 @@ namespace WebVueAPI
             {
                 app.UseHsts();
             }
+            
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseHttpsRedirection();
             app.UseMvc();
